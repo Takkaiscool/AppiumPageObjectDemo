@@ -1,10 +1,14 @@
 package pageObject.utils;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -29,5 +33,10 @@ public class BaseTestClass {
     @AfterClass
     public void tearDown(){
         //driver.quit();
+    }
+
+    public void waitForElement(AppiumDriver driver, WebElement ele){
+        WebDriverWait wait=new WebDriverWait(driver,60);
+        wait.until(ExpectedConditions.elementToBeClickable(ele));
     }
 }
